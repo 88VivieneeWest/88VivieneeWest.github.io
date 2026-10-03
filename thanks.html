@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nebbia — спасибо</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#050505">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30' fill='none' stroke='%23ff4b1f' stroke-width='2.4' stroke-linecap='round'%3E%3Ccircle cx='8' cy='15' r='3.4' fill='%23ff4b1f' stroke='none'/%3E%3Cpath d='M14 8a10 10 0 0 1 0 14'/%3E%3Cpath d='M19 4.5a15 15 0 0 1 0 21' opacity='.6'/%3E%3Cpath d='M24 1.5a19 19 0 0 1 0 27' opacity='.3'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<style>
+/* The payment service sends buyers here after a successful payment. */
+.thx{min-height:100vh;min-height:100svh;display:grid;align-content:center;gap:40px;padding:120px var(--gut) 80px;max-width:1100px}
+.thx h1{margin:0;font:700 clamp(64px,13vw,220px)/.84 var(--display);text-transform:uppercase;color:var(--hot)}
+.thx .br{max-width:620px;color:var(--ink);font-size:13px}
+.thx ol{list-style:none;margin:0;padding:0;display:grid;gap:0;max-width:760px;border-top:1px solid var(--line)}
+.thx li{display:grid;grid-template-columns:44px 1fr;padding:16px 0;border-bottom:1px solid var(--line);font-size:15px;color:var(--ink-2)}
+.thx li b{font:500 11px var(--mono);letter-spacing:.14em;color:var(--hot);padding-top:.3em}
+.thx li em{font-style:normal;color:var(--ink)}
+.back{justify-self:start;font:500 11px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
+.back:hover{color:var(--hot)}
+</style>
+</head>
+<body>
+<header class="top scrolled">
+  <span></span>
+  <a class="logo" href="./" aria-label="Nebbia">Nebbia<sup>®</sup><small class="by">by <img src="vsound-v-small.svg" alt="V"><b>SOUND</b></small></a>
+  <span></span>
+</header>
+<main class="thx">
+  <h1 data-t="h">Спасибо</h1>
+  <p class="br" data-t="p">Оплата прошла. На почту <span id="mail">из заказа</span> уже летят чек, ключ активации и ссылки на установщики Nebbia для macOS и Windows.</p>
+  <ol>
+    <li><b>01</b><span data-t="s1">Письма нет через 10 минут — загляните в «Спам» и «Промоакции».</span></li>
+    <li><b>02</b><span data-t="s2">Скачайте установщик для своей системы и запустите его. Плагин встанет в системные папки VST3 и Audio Unit.</span></li>
+    <li><b>03</b><span data-t="s3">Перезапустите DAW и откройте Nebbia: плагин попросит ключ из письма (нужен интернет — один раз, при активации). В Ableton включите «Use VST3 Plug-in System Folders» и нажмите Rescan.</span></li>
+  </ol>
+  <a class="back" href="./" data-t="b">← На главную</a>
+</main>
+<script>
+(()=>{
+  const EN={h:'Thank you',p:'Payment received. The receipt, your activation key and links to the Nebbia installers for macOS and Windows are on their way to <span id="mail">your e-mail</span>.',
+    s1:'No e-mail after 10 minutes? Check Spam and Promotions.',s2:'Download the installer for your system and run it. The plug-in goes into the system VST3 and Audio Unit folders.',
+    s3:'Restart your DAW and open Nebbia: it asks for the key from the e-mail (internet needed once, to activate). In Ableton turn on “Use VST3 Plug-in System Folders” and Rescan.',b:'← Back to the site'};
+  let lang='ru',mail='';
+  try{lang=localStorage.getItem('nebbia-lang')||lang;mail=localStorage.getItem('nebbia-email')||''}catch(e){}
+  if(lang==='en'){document.documentElement.lang='en';document.title='Nebbia — thank you';document.querySelectorAll('[data-t]').forEach(e=>{e.innerHTML=EN[e.dataset.t]})}
+  if(mail){const m=document.getElementById('mail');m.textContent=mail;m.style.color='var(--hot)'}
+})();
+</script>
+</body>
+</html>

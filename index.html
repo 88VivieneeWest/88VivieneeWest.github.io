@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nebbia by Vsound — Reverb / Delay</title>
+<meta name="description" content="Nebbia — реверб и дилей в одном плагине. VST3 и Audio Unit для macOS и Windows.">
+<meta name="theme-color" content="#050505">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30' fill='none' stroke='%23ff4b1f' stroke-width='2.4' stroke-linecap='round'%3E%3Ccircle cx='8' cy='15' r='3.4' fill='%23ff4b1f' stroke='none'/%3E%3Cpath d='M14 8a10 10 0 0 1 0 14'/%3E%3Cpath d='M19 4.5a15 15 0 0 1 0 21' opacity='.6'/%3E%3Cpath d='M24 1.5a19 19 0 0 1 0 27' opacity='.3'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+
+<header class="top" id="top">
+  <nav class="nav-l" aria-label="Разделы">
+    <a href="#ui" data-i18n="navUi">Интерфейс</a>
+    <a href="#engine" data-i18n="navEngine">Движок</a>
+    <a href="#fx">FX</a>
+    <a href="#presets" data-i18n="navPresets">Пресеты</a>
+  </nav>
+  <a class="logo" href="#" aria-label="Nebbia">Nebbia<sup>®</sup><small class="by">by <img src="vsound-v-small.svg" alt="V"><b>SOUND</b></small></a>
+  <div class="nav-r">
+    <button class="snd" id="snd" aria-pressed="false"><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span><span data-i18n="sndOff">Звук выкл</span></button>
+    <button class="lang" id="lang" aria-label="Language"><b data-l="ru">RU</b>/<b data-l="en">EN</b></button>
+    <a class="dl" href="#buy"><span data-i18n="navDl">Купить</span></a>
+  </div>
+</header>
+
+<main>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="hero">
+  <canvas id="field" aria-hidden="true"></canvas>
+
+  <div class="blurb" id="blurb">
+    <p class="br" data-i18n="blurb">Nebbia — реверб и дилей в одном плагине. Пять пространств, эхо по стерео, четыре FX-слота и дисплей, на котором видно, как звучит комната.</p>
+    <a class="cta" href="#buy"><span data-i18n="ctaDl">Купить Nebbia</span> <em>↓</em></a>
+  </div>
+
+  <h1 class="headline" id="headline">
+    <span class="hl l1" data-i18n="h1a">Пространство,</span>
+    <span class="hl l2" data-i18n="h1b">которое</span>
+    <span class="hl l3" data-i18n="h1c">видно.</span>
+  </h1>
+
+  <p class="hint" id="hint" data-i18n="hint">[ кликните по туману — импульс уйдёт эхом ]</p>
+
+  <a class="down" href="#ui" aria-label="Вниз">
+    <svg width="22" height="34" viewBox="0 0 22 34" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M11 1v31M1 22l10 10 10-10"/></svg>
+  </a>
+</section>
+
+<!-- ================= 01 LIVE UI ================= -->
+<section class="sec" id="ui">
+  <div class="shead rv">
+    <span class="idx">[ 01 ]</span>
+    <h2 class="scr" data-i18n="uiH">Живой интерфейс</h2>
+    <p class="br" data-i18n="uiP">Это не скриншот — это сам плагин. Крутите ручки, листайте пресеты, включите Freeze, откройте вкладку FX.</p>
+  </div>
+  <div class="device rv">
+    <div class="device-bar"><span><i></i><i></i><i></i></span><b>Nebbia · Reverb / Delay</b><em data-i18n="uiLive">● live</em></div>
+    <div class="device-screen"><iframe src="ui/index.html" title="Nebbia plug-in interface" loading="lazy"></iframe></div>
+  </div>
+  <p class="note rv" data-i18n="uiNote">[ лучше смотреть на большом экране — ручки тянутся вверх и вниз ]</p>
+</section>
+
+<!-- ================= 02 ENGINE ================= -->
+<section class="sec" id="engine">
+  <div class="shead rv">
+    <span class="idx">[ 02 ]</span>
+    <h2 class="scr" data-i18n="engH">Движок</h2>
+    <p class="br" data-i18n="engP">Два полноценных блока и выход, которые можно соединить тремя способами. Каждая ручка автоматизируется из DAW.</p>
+  </div>
+
+  <div class="stats rv">
+    <div><b class="count" data-n="5">05</b><span data-i18n="st1">пространств</span></div>
+    <div><b class="count" data-n="14">14</b><span data-i18n="st2">нотных длительностей</span></div>
+    <div><b class="count" data-n="3">03</b><span data-i18n="st3">маршрута сигнала</span></div>
+    <div><b class="count" data-n="4">04</b><span data-i18n="st4">FX-слота</span></div>
+    <div><b class="count" data-n="20">20</b><span data-i18n="st5">параметров автоматизации</span></div>
+  </div>
+
+  <div class="mods">
+    <article class="mod rv" style="--c:var(--rev)">
+      <header><i></i><span>Reverb</span></header>
+      <h3 class="scr">Hall · Plate · Room · Chamber · Spring</h3>
+      <ul>
+        <li><span>Decay</span><b>0.1 – 20 s</b></li>
+        <li><span>Pre-delay</span><b>0 – 250 ms</b></li>
+        <li><span>Size · Damping · Diffusion</span><b>0 – 100 %</b></li>
+        <li><span>Freeze</span><b data-i18n="freeze">хвост застывает</b></li>
+      </ul>
+    </article>
+    <article class="mod rv" style="--c:var(--dly)">
+      <header><i></i><span>Delay</span></header>
+      <h3 class="scr">Mono · Stereo · Ping-Pong</h3>
+      <ul>
+        <li><span>Time</span><b data-i18n="dTime">10 – 2000 ms или 1/32 … 1/1</b></li>
+        <li><span>Sync</span><b data-i18n="dSync">триоли и точки по темпу DAW</b></li>
+        <li><span>Feedback · Tone</span><b>0 – 100 % · 0.5 – 20 kHz</b></li>
+        <li><span>Mod Depth · Rate</span><b data-i18n="dMod">ленточная модуляция до 8 Hz</b></li>
+      </ul>
+    </article>
+    <article class="mod rv" style="--c:var(--hot)">
+      <header><i></i><span>Out</span></header>
+      <h3 class="scr">R › D · D › R · Parallel</h3>
+      <ul>
+        <li><span>Mix · Gain</span><b>0 – 100 % · −24 … +12 dB</b></li>
+        <li><span>Lo Cut · Hi Cut</span><b>20 Hz – 1 kHz · 1 – 20 kHz</b></li>
+        <li><span>Width</span><b data-i18n="oWidth">0 – 200 %, от моно до сверхширины</b></li>
+        <li><span>Duck</span><b data-i18n="oDuck">хвост уступает сухому сигналу</b></li>
+      </ul>
+    </article>
+  </div>
+</section>
+
+<!-- ================= 03 FX ================= -->
+<section class="sec" id="fx">
+  <div class="shead rv">
+    <span class="idx">[ 03 ]</span>
+    <h2 class="scr" data-i18n="fxH">Четыре слота. Пять характеров.</h2>
+    <p class="br" data-i18n="fxP">Каждый эффект встаёт после реверба, после дилея или после обоих. Слоты обрабатываются слева направо.</p>
+  </div>
+  <div class="fxgrid">
+    <article class="fxc rv" data-fx="distortion"><canvas></canvas><div><span class="n">01</span><h3>Distortion</h3><p data-i18n="fx1">Drive до 36 dB, форма от мягкой до folding, тон 1–18 kHz.</p></div></article>
+    <article class="fxc rv" data-fx="eq"><canvas></canvas><div><span class="n">02</span><h3>EQ</h3><p data-i18n="fx2">Low · Mid · High по ±15 dB, середина плавает от 200 Hz до 8 kHz.</p></div></article>
+    <article class="fxc rv" data-fx="chorus"><canvas></canvas><div><span class="n">03</span><h3>Chorus</h3><p data-i18n="fx3">Rate 0.05–8 Hz, глубина и стерео-разнос — хвост начинает плыть.</p></div></article>
+    <article class="fxc rv" data-fx="phaser"><canvas></canvas><div><span class="n">04</span><h3>Phaser</h3><p data-i18n="fx4">Бегущие вырезы по спектру, обратная связь до 90 %.</p></div></article>
+    <article class="fxc rv" data-fx="reverse"><canvas></canvas><div><span class="n">05</span><h3>Reverse</h3><p data-i18n="fx5">Разворачивает хвост: от 30 ms до 2 s или в долях такта.</p></div></article>
+  </div>
+</section>
+
+<!-- ================= 04 PRESETS ================= -->
+<section class="sec" id="presets">
+  <div class="shead rv">
+    <span class="idx">[ 04 ]</span>
+    <h2 class="scr" data-i18n="prH">Пресеты</h2>
+    <p class="br" data-i18n="prP">Нажмите на строку — прозвучит короткая фраза через этот пресет. Звук включится сам.</p>
+  </div>
+  <ol class="plist" id="plist"></ol>
+</section>
+
+<!-- ================= 05 COMPAT ================= -->
+<section class="sec" id="compat">
+  <div class="shead rv">
+    <span class="idx">[ 05 ]</span>
+    <h2 class="scr" data-i18n="cpH">Работает там, где вы</h2>
+  </div>
+  <div class="specs rv">
+    <div><span data-i18n="cpF">Форматы</span><b>VST3 · Audio Unit</b></div>
+    <div><span>macOS</span><b data-i18n="cpMac">11+ · Apple Silicon и Intel</b></div>
+    <div><span>Windows</span><b data-i18n="cpWin">10+ · x64 · VST3</b></div>
+    <div><span data-i18n="cpV">Версия</span><b>1.0.0</b></div>
+  </div>
+  <div class="marquee" aria-label="Ableton Live, FL Studio, Logic Pro, Cubase, Reaper, Bitwig, Studio One, GarageBand">
+    <div class="mq-track" aria-hidden="true">
+      <span>Ableton Live</span><i>*</i><span>FL Studio</span><i>*</i><span>Logic Pro</span><i>*</i><span>Cubase</span><i>*</i><span>Reaper</span><i>*</i><span>Bitwig</span><i>*</i><span>Studio One</span><i>*</i><span>GarageBand</span><i>*</i>
+      <span>Ableton Live</span><i>*</i><span>FL Studio</span><i>*</i><span>Logic Pro</span><i>*</i><span>Cubase</span><i>*</i><span>Reaper</span><i>*</i><span>Bitwig</span><i>*</i><span>Studio One</span><i>*</i><span>GarageBand</span><i>*</i>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 06 BUY ================= -->
+<section class="sec" id="buy">
+  <div class="shead rv">
+    <span class="idx">[ 06 ]</span>
+    <h2 class="scr big" data-i18n="buyH">Купить</h2>
+  </div>
+
+  <div class="buy">
+    <div class="price rv">
+      <b class="scr">Nebbia 1.0</b>
+      <p class="br" data-i18n="priceP">Разовая покупка. Установщики для macOS и Windows — в одной лицензии.</p>
+      <div class="incl">
+        <div><span class="os">macOS</span><span class="det" data-i18n="dlMac">VST3 + Audio Unit · Universal · macOS 11+</span></div>
+        <div><span class="os">Windows</span><span class="det" data-i18n="dlWin">VST3 · x64 · Windows 10+</span></div>
+      </div>
+    </div>
+
+    <form class="pay rv" id="pay">
+      <fieldset>
+        <legend data-i18n="payL">Способ оплаты</legend>
+        <label class="pm"><input type="radio" name="pm" value="card" checked><span><b data-i18n="pmCard">Банковская карта</b><small data-i18n="pmCardS">Мир, Visa, Mastercard российских банков</small></span></label>
+        <label class="pm"><input type="radio" name="pm" value="sbp"><span><b data-i18n="pmSbp">СБП</b><small data-i18n="pmSbpS">по QR-коду из приложения любого банка</small></span></label>
+        <label class="pm"><input type="radio" name="pm" value="sberpay"><span><b>SberPay</b><small data-i18n="pmSberS">в приложении СберБанк Онлайн</small></span></label>
+        <label class="pm"><input type="radio" name="pm" value="tpay"><span><b>T-Pay</b><small data-i18n="pmTS">в приложении Т-Банка</small></span></label>
+        <label class="pm"><input type="radio" name="pm" value="yoomoney"><span><b data-i18n="pmYoo">ЮMoney</b><small data-i18n="pmYooS">кошелёк ЮMoney</small></span></label>
+      </fieldset>
+      <label class="mail">
+        <span data-i18n="mailL">E-mail для чека и ключа</span>
+        <input type="email" name="email" id="email" required autocomplete="email" inputmode="email" placeholder="you@mail.ru">
+      </label>
+      <label class="agree"><input type="checkbox" name="agree" required><span data-i18n="agree">Я принимаю условия <a href="oferta.html" target="_blank">публичной оферты</a>, включая порядок передачи и возврата</span></label>
+      <button class="paybtn" type="submit"><span data-i18n="payBtn">Оплатить</span> 5 000 ₽ <em>→</em></button>
+      <p class="paynote" id="payNote" data-i18n="payNote">Оплата проходит на защищённой странице платёжного сервиса. Сразу после оплаты на эту почту придут чек, ключ активации и ссылки на установщики для macOS и Windows.</p>
+    </form>
+  </div>
+
+  <h3 class="after rv" data-i18n="afterH">После оплаты</h3>
+  <div class="steps">
+    <div class="rv"><span class="idx">01</span><p data-i18n="s1">Запустите установщик. Он положит плагин в системные папки, где его ищет любая DAW. При первом открытии Nebbia попросит ключ из письма — он работает на одном компьютере.</p></div>
+    <div class="rv"><span class="idx">02</span><p data-i18n="s2">Перезапустите DAW. В Ableton включите «Use VST3 Plug-in System Folders» и нажмите Rescan; в FL Studio — Manage plugins → Find plugins. Logic подхватит Audio Unit сам.</p></div>
+    <div class="rv"><span class="idx">03</span><p data-i18n="s3">Если macOS не даёт открыть установщик: правый клик → «Открыть» → «Открыть», или System Settings → Privacy &amp; Security → Open Anyway.</p></div>
+  </div>
+
+  <h3 class="after rv" id="terms" data-i18n="termsH">Получение и возврат</h3>
+  <div class="terms">
+    <div class="rv"><b data-i18n="tGetH">Как приходит плагин</b><p data-i18n="tGet">Только в электронном виде: сразу после оплаты на ваш e-mail приходят кассовый чек, ключ активации и ссылки на установщики для macOS и Windows — обычно за пару минут, максимум за 24 часа. Физической доставки нет.</p></div>
+    <div class="rv"><b data-i18n="tPayH">Оплата</b><p data-i18n="tPay">Банковская карта, СБП, SberPay, T-Pay или ЮMoney на защищённой странице платёжного сервиса. Данные карты сайт не видит и не хранит.</p></div>
+    <div class="rv"><b data-i18n="tRetH">Возврат</b><p data-i18n="tRet">Если плагин не устанавливается или не работает на вашем компьютере и мы не смогли помочь, вернём деньги: напишите на почту в течение 14 дней после оплаты. Деньги возвращаются тем же способом в течение 10 дней. Подробно — в <a href="oferta.html#app1">Приложении № 1 к оферте</a>.</p></div>
+  </div>
+</section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="foot">
+  <canvas id="wordmark" aria-hidden="true"></canvas>
+  <div class="fbrand" aria-label="Vsound"><img src="vsound-v.svg" alt="V"><span>SOUND</span></div>
+  <div class="finfo">
+    <div><span data-i18n="fCont">Контакты</span>
+      <a href="mailto:nebbiasoundhelp@yandex.com">nebbiasoundhelp@yandex.com</a>
+      <a href="tel:+79789962073">+7 978 996-20-73</a></div>
+    <div><span data-i18n="fSeller">Продавец</span>
+      <p data-i18n="fName">Устимчук Роман Андреевич</p>
+      <p data-i18n="fStatus">Самозанятый (плательщик НПД)</p>
+      <p data-i18n="fInn">ИНН 910615636730</p></div>
+    <div><span data-i18n="fDocs">Документы</span>
+      <a href="oferta.html" data-i18n="fOffer">Публичная оферта</a>
+      <a href="#terms" data-i18n="fTerms">Получение и возврат</a>
+      <a href="oferta.html#s11" data-i18n="fReq">Реквизиты</a></div>
+  </div>
+  <div class="frow">
+    <span>© 2026 Vsound · Nebbia</span>
+    <span data-i18n="fTag">Пространство, которое видно.</span>
+    <a href="#top" data-i18n="fTop">Наверх ↑</a>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+</body>
+</html>
